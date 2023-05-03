@@ -56,6 +56,8 @@ build_image() {
     cp ${SRC_DIR}/build/iconee/dist/iconee-*.whl ${BUILD_DIR}/dist/pyee/
     cp ${SRC_DIR}/javaee/app/execman/build/distributions/execman-${JAVAEE_VERSION}.zip ${BUILD_DIR}/dist/
 
+    cp -r ${SRC_DIR}/docker/gochain-icon/data ${BUILD_DIR}/
+
     CDIR=$(pwd)
     cd ${BUILD_DIR}
 

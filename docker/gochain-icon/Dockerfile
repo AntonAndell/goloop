@@ -1,5 +1,5 @@
 ARG IMAGE_BASE
-FROM ${IMAGE_BASE}
+FROM iconloop/goloop-icon:latest
 LABEL MAINTAINER="t_icondev@iconloop.com"
 
 ARG GOCHAIN_ICON_VERSION
@@ -22,6 +22,9 @@ ENV JAVAEE_BIN /goloop/execman/bin/execman
 ADD dist/bin/* /goloop/bin/
 ENV PATH $PATH:/goloop/bin
 
+Add  data/single /goloop/data
+Add  data/governance /goloop/data/gov
+Add  data/godWallet.json /goloop/
 # container configuration
 WORKDIR /goloop
 EXPOSE 9080/tcp

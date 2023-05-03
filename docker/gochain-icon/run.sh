@@ -59,11 +59,21 @@ set -e
 
 GOCHAIN="gochain"
 
+GOCHAIN_CONFIG=/goloop/data/config.json
+GOCHAIN_GENESIS=/goloop/data/genesis.json
+GOCHAIN_DATA=/goloop/chain/iconee
+GOCHAIN_LOGFILE=/goloop/chain/iconee.log
+GOCHAIN_DB_TYPE=rocksdb
+GOCHAIN_CLEAN_DATA=true
+JAVAEE_BIN=/goloop/execman/bin/execman
+PYEE_VERIFY_PACKAGE=true
+ICON_CONFIG=/goloop/data/icon_config.json
+
+
 GOCHAIN_DATA=${GOCHAIN_DATA:-"./data"}
 GOCHAIN_CONFIG=${GOCHAIN_CONFIG:-"./config.json"}
 GOCHAIN_KEYSTORE=${GOCHAIN_KEYSTORE:-"./keystore.json"}
 GOCHAIN_DB_TYPE=${GOCHAIN_DB_TYPE:-"goleveldb"}
-
 if [ ${GOCHAIN_CLEAN_DATA} == "true" ] ; then
     rm -rf ${GOCHAIN_DATA} || exit 1
     if [ "${GOCHAIN_LOGFILE}" != "" ] ; then
@@ -125,6 +135,7 @@ if [ ! -r "${GOCHAIN_CONFIG}" ] ; then
     echo "[!] Generate config path=[${GOCHAIN_CONFIG}]"
     ${GOCHAIN} ${GOCHAIN_OPTIONS} --save ${GOCHAIN_CONFIG} || exit 1
 fi
+  echo  ${GOCHAIN} --config ${GOCHAIN_CONFIG} ${GOCHAIN_OPTIONS}
 
 if [ "${GOCHAIN_LOGFILE}" != "" ] ; then
   GOCHAIN_LOGDIR=$(dirname ${GOCHAIN_LOGFILE})
